@@ -16,7 +16,8 @@ date: 2022-04-05
 
 
 1. pandoc: 2.11及以上
-2. pandoc-fignos: 2.4.0
+2. xelatex: 3.14159265-2.6-0.999991及以上
+3. pandoc-fignos: 2.4.0
    - ```python 
 	  pip install pandoc-fignos
 	 ```
@@ -60,7 +61,52 @@ def fib(n):
 $ ./md2docx.sh
 ```
 
-以上很多内容参考了王树义老师的"如何用Markdown写论文？"[@markdownforpaper]。
+本节和以上很多内容参考了王树义老师的"如何用Markdown写论文？"[@markdownforpaper]。
+
+该配置加了章节号，比如 1.2 章节名。
+
+```bash
+-N
+```
+
+该配置加了目录。
+
+```bash
+--toc
+```
+
+该配置为每幅图加了图号。
+
+```bash
+--filter pandoc-fignos
+```
+
+该配置加引用。
+
+```--bibliography```设置bib文件路径。
+把你的引文加入bib文件中。
+
+```--csl```设置引用样式文件路径。
+使用任何你喜欢的csl。
+
+```bash
+--citeproc \
+--bibliography=myref.bib \
+--csl=chinese-gb7714-2005-numeric.csl \
+```
+
+该配置高亮代码块。
+
+```bash
+--highlight-style zenburn
+```
+
+该shell列出了支持的高亮语言和样式。
+
+```bash
+pandoc --list-highlight-languages
+pandoc --list-highlight-styles
+```
 
 # Markdown转pdf示例
 
@@ -72,7 +118,7 @@ $ ./md2pdf.sh
 
 比起pdflatex，xelatex对中文的支持更好。
 
-配置字体
+配置字体。使用你喜欢的任何已安装字体。
 
 ```bash
 -V mainfont='Noto Sans Mono CJK SC'
@@ -92,7 +138,5 @@ $ fc-list :lang=zh-cn
 ```bash
 -V geometry:"top=2cm, bottom=1.5cm, left=2cm, right=2cm"
 ```
-
-在myref.bib中加入参考文献，*.csl控制参考文献的格式。
 
 # 参考文献

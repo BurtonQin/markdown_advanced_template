@@ -15,7 +15,8 @@ But here we want to support more advanced features: TOC, ref to figures, and bib
 Prerequisits:
 
 1. pandoc: 2.11 or higher
-2. pandoc-fignos: 2.4.0
+2. XeTeX: 3.14159265-2.6-0.999991 or higher
+3. pandoc-fignos: 2.4.0
    - ```python
 	  pip install pandoc-fignos
 	 ```
@@ -61,6 +62,51 @@ $ ./md2docx.sh
 
 This section and above refer a lot to "How to use markdown to write paper(zh-cn)"[@markdownforpaper] by Shuyi Wang.
 
+This config adds numbers before sections, e.g., 1.2 Section Name
+
+```bash
+-N
+```
+
+This config adds TOC (Table of Content).
+
+```bash
+--toc
+```
+
+This config adds figure numbers below each figure.
+
+```bash
+--filter pandoc-fignos
+```
+
+These configs add citation.
+
+```--bibliography``` sets the bib file path.
+Add your references into the bib file.
+
+```--csl``` sets the citation style file path.
+Use any csl you like.
+
+```bash
+--citeproc \
+--bibliography=myref.bib \
+--csl=chinese-gb7714-2005-numeric.csl \
+```
+
+This config highlights the code block.
+
+```bash
+--highlight-style zenburn
+```
+
+This shell lists the supported hightlight langues and styles.
+
+```bash
+pandoc --list-highlight-languages
+pandoc --list-highlight-styles
+```
+
 # Markdown to pdf Example
 
 ```bash
@@ -71,7 +117,7 @@ This section refers a lot to "Converting Markdown to Beautiful PDF with Pandoc"[
 
 xelatex supports zh-cn better than pdflatex.
 
-This config sets the font
+This config sets the font. Use any installed font you like.
 
 ```bash
 -V mainfont='Noto Sans Mono CJK SC'
@@ -91,8 +137,5 @@ This config shrinks it.
 ```bash
 -V geometry:"top=2cm, bottom=1.5cm, left=2cm, right=2cm"
 ```
-
-Add your references into myref.bib.
-*.csl is to control the format of the bib.
 
 # Reference

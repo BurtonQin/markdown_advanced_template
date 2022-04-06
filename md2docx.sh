@@ -11,7 +11,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# -N # Add numbers to sections e.g. 1.2 Section
+# -N # Add numbers to sections e.g. 1.2 Section Name
 # --toc # Add TOC
 # --filter pandoc-fignos # Add fig no
 # --citeproc # Add cite
